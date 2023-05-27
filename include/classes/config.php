@@ -104,11 +104,13 @@ class Config
 
     function __construct()
     {
-        $this->comment .= "/*   __________________________________________________".PHP_EOL;
-        $this->comment .= "    |  Obfuscated by YAK Pro - Php Obfuscator  %-6.6s  |".PHP_EOL;
-        $this->comment .= "    |              on %s              |".PHP_EOL;
-        $this->comment .= "    |    GitHub: https://github.com/pk-fr/yakpro-po    |".PHP_EOL;
-        $this->comment .= "    |__________________________________________________|".PHP_EOL;
+        $this->comment .= "/*_______________________________________________________________".PHP_EOL;
+        $this->comment .= "|                   eWeb.bg - Всички права запазени.             |".PHP_EOL;
+        $this->comment .= "|       Криптирано с версия %-6.6s на %s        |".PHP_EOL;
+        $this->comment .= "|     Авторските права над софтуера са притежание на eWeb Ltd.   |".PHP_EOL;
+        $this->comment .= "|     Използването на софтуера без лиценз се наказва от закона   |".PHP_EOL;
+        $this->comment .= "|             за АП по член 96 и 97. по наказателния кодекс      |".PHP_EOL;
+        $this->comment .= "|________________________________________________________________|".PHP_EOL;
         $this->comment .= "*/".PHP_EOL;
     }
 
