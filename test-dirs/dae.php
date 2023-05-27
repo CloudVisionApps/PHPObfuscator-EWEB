@@ -1,6 +1,6 @@
 <?php
-echo 1;
+echo 2;
 
 function test() {
-    echo 2;
+    echo 555;
 }

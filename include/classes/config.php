@@ -57,15 +57,15 @@ class Config
 
     public $t_obfuscate_php_extension       = array('php');
 
-    public $obfuscate_constant_name         = true;         // self explanatory
+    public $obfuscate_constant_name         = false;         // self explanatory
     public $obfuscate_variable_name         = true;         // self explanatory
     public $obfuscate_function_name         = true;         // self explanatory
-    public $obfuscate_class_name            = true;         // self explanatory
+    public $obfuscate_class_name            = false;         // self explanatory
     public $obfuscate_interface_name        = true;         // self explanatory
     public $obfuscate_trait_name            = true;         // self explanatory
     public $obfuscate_class_constant_name   = true;         // self explanatory
-    public $obfuscate_property_name         = true;         // self explanatory
-    public $obfuscate_method_name           = true;         // self explanatory
+    public $obfuscate_property_name         = false;         // self explanatory
+    public $obfuscate_method_name           = false;         // self explanatory
     public $obfuscate_namespace_name        = true;         // self explanatory
     public $obfuscate_label_name            = true;         // label: , goto label;  obfuscation
     public $obfuscate_if_statement          = true;         // obfuscate if else elseif statements
@@ -78,7 +78,7 @@ class Config
     public $shuffle_stmts_chunk_ratio       =   20;         // ratio > 1  100/ratio is the percentage of chunks in a statements sequence  ratio = 2 means 50%  ratio = 100 mins 1% ...
                                                             // if you increase the number of chunks, you increase also the obfuscation level ... and you increase also the performance overhead!
 
-    public $strip_indentation               = true;         // all your obfuscated code will be generated on a single line
+    public $strip_indentation               = false;         // all your obfuscated code will be generated on a single line
     public $abort_on_error                  = true;         // self explanatory
     public $confirm                         = true;         // rfu : will answer Y on confirmation request (reserved for future use ... or not...)
     public $silent                          = false;        // display or not Information level messages.
