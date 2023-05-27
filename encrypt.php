@@ -14,7 +14,7 @@
 if (isset($_SERVER["SERVER_SOFTWARE"]) && ($_SERVER["SERVER_SOFTWARE"]!="") ){ echo "<h1>Comand Line Interface Only!</h1>"; die; }
 
 
-const PHP_PARSER_DIRECTORY  = 'PHP-Parser';
+const PHP_PARSER_DIRECTORY  = 'php-parser';
 
 
 require_once 'include/check_version.php';
@@ -108,7 +108,53 @@ switch($process_mode)
 
         obfuscate_directory($source_directory,"$target_directory/yakpro-po/obfuscated");
 
-        exit(0);
+        zip_files_from_dir("$target_directory/yakpro-po/obfuscated","$target_directory/eweb-obfuscated.zip");
+
+        var_dump(scandir("$target_directory/yakpro-po/obfuscated"));
+        exit('done');
 }
 
-?>
+
+function zip_files_from_dir($dir, $outputFile)
+{
+    // Get real path for our folder
+    $rootPath = realpath($dir);
+
+// Initialize archive object
+    $zip = new ZipArchive();
+    $zip->open($outputFile, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+// Initialize empty "delete list"
+    $filesToDelete = array();
+
+// Create recursive directory iterator
+    /** @var SplFileInfo[] $files */
+    $files = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($rootPath),
+        RecursiveIteratorIterator::LEAVES_ONLY
+    );
+
+    foreach ($files as $name => $file)
+    {
+        // Skip directories (they would be added automatically)
+        if (!$file->isDir())
+        {
+            // Get real and relative path for current file
+            $filePath = $file->getRealPath();
+            $relativePath = substr($filePath, strlen($rootPath) + 1);
+
+            // Add current file to archive
+            $zip->addFile($filePath, $relativePath);
+
+            // Add current file to "delete list"
+            // delete it later cause ZipArchive create archive only after calling close function and ZipArchive lock files until archive created)
+            if ($file->getFilename() != 'important.txt')
+            {
+                $filesToDelete[] = $filePath;
+            }
+        }
+    }
+
+// Zip archive will be created only after closing object
+    $zip->close();
+}
